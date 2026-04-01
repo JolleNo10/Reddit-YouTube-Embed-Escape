@@ -1,6 +1,3 @@
-Use this exact block. I removed the nested fenced code blocks inside it, because that is what broke it.
-
-```md
 # Reddit YouTube Embed Escape
 
 Open embedded YouTube videos directly on YouTube from Reddit.
