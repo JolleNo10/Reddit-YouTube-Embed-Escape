@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Reddit-YouTube-Embed-Escape",
+  "version": "1.0.1",
+  "description": "Adds a direct YouTube link to Reddit posts with embedded YouTube videos.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.reddit.com/*",
+        "https://reddit.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
