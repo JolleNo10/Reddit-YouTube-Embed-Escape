@@ -66,18 +66,11 @@
   function injectLinkIntoFlair(postEl, videoId) {
     const flair = postEl.querySelector('shreddit-post-flair[slot="post-flair"]');
     if (!flair) {
-      debugLog("flair not found");
       return false;
     }
 
     if (flair.querySelector(`.${LINK_CLASS}`)) {
       return true;
-    }
-
-    const existingBadgeLink = flair.querySelector("a");
-    if (!existingBadgeLink) {
-      debugLog("flair anchor not found");
-      return false;
     }
 
     const singlePost = isSinglePostPage();
@@ -87,12 +80,19 @@
     flair.style.gap = "6px";
     flair.style.verticalAlign = "middle";
 
-    existingBadgeLink.style.display = "inline-flex";
-    existingBadgeLink.style.alignItems = "center";
-    existingBadgeLink.style.flex = "0 0 auto";
-
+    const existingBadgeLink = flair.querySelector("a");
     const link = createYouTubeLink(videoId, singlePost);
-    existingBadgeLink.insertAdjacentElement("afterend", link);
+
+    if (existingBadgeLink) {
+      existingBadgeLink.style.display = "inline-flex";
+      existingBadgeLink.style.alignItems = "center";
+      existingBadgeLink.style.flex = "0 0 auto";
+
+      existingBadgeLink.insertAdjacentElement("afterend", link);
+    } else {
+      // Corner case: flair container exists but has no visible flair badge
+      flair.appendChild(link);
+    }
 
     return true;
   }

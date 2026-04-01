@@ -12,5 +12,8 @@
       "js": ["content.js"],
       "run_at": "document_idle"
     }
-  ]
+  ],
+  "action": {
+  "default_title": "Reddit YouTube Embed Escape"
+  }
 }
